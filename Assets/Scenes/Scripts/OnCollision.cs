@@ -6,36 +6,58 @@ using UnityEngine.SceneManagement;
 public class OnCollision : MonoBehaviour
 {
     [SerializeField] float LevelDelaySpawn;
+    [SerializeField] AudioClip DeathSound;
+    [SerializeField] AudioClip SuccessSound;
+
+    AudioSource audioSource;
+
+
+    public bool isTransitioning= false;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnCollisionEnter(Collision other)
     {
-        switch (other.gameObject.tag)
+        if (!isTransitioning)
         {
-            case "Friendly":
-                Debug.Log("Friendly");
-                break;
-            case "Finish":
-                StartSuccessSequence();
-                break;
-            case "Fuel":
-                Debug.Log("Fuel");
-                break;
-            case "default":
-                StartCrashSequence();
-                
-                break;
+            switch (other.gameObject.tag)
+            {
+                case "Friendly":
+                    Debug.Log("Friendly");
+                    break;
+                case "Finish":
+                    StartSuccessSequence();
+                    break;
+                case "Fuel":
+                    Debug.Log("Fuel");
+                    break;
+                case "default":
+                    StartCrashSequence();
+
+                    break;
 
 
+            }
         }
+       
        
     }
     void StartSuccessSequence()
-    {
+    {   
+        isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(SuccessSound);
         GetComponent<TestScript>().enabled = false;
         Invoke("LoadNextLevel", LevelDelaySpawn);
     }
     void StartCrashSequence() 
-    {   
+    {
+        isTransitioning= true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(DeathSound);
         GetComponent<TestScript>().enabled = false;
         Invoke("ReloadLevel", LevelDelaySpawn);
 

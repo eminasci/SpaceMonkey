@@ -10,29 +10,39 @@ public class TestScript : MonoBehaviour
     AudioSource audiosource;
     [SerializeField] float RocketSpeed = 1;
     [SerializeField] float RotationThrust;
+    [SerializeField] AudioClip MainEngineSound;
  
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         audiosource = GetComponent<AudioSource>();
-  
+
+        
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+      
         RocketMovenment();
      
     }
     private void RocketMovenment()
-    {
+    {   
         if (Input.GetKey(KeyCode.Space))
         {
+           
             rb.AddRelativeForce(0,RocketSpeed*Time.deltaTime,0);
-            if (!audiosource.isPlaying)
+            if (!audiosource.isPlaying )
             {
-                audiosource.Play();
+                audiosource.PlayOneShot(MainEngineSound);
             }
           
             
