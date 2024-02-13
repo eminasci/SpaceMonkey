@@ -11,7 +11,12 @@ public class TestScript : MonoBehaviour
     [SerializeField] float RocketSpeed = 1;
     [SerializeField] float RotationThrust;
     [SerializeField] AudioClip MainEngineSound;
- 
+    [SerializeField] ParticleSystem MainBoosterParticle;
+    [SerializeField] ParticleSystem RightBooster;
+    [SerializeField] ParticleSystem LeftBooster;
+
+
+
 
 
 
@@ -42,6 +47,7 @@ public class TestScript : MonoBehaviour
             rb.AddRelativeForce(0,RocketSpeed*Time.deltaTime,0);
             if (!audiosource.isPlaying )
             {
+                MainBoosterParticle.Play();
                 audiosource.PlayOneShot(MainEngineSound);
             }
           
@@ -49,6 +55,7 @@ public class TestScript : MonoBehaviour
         }
         else
         {
+            MainBoosterParticle.Stop();
             audiosource.Stop();
         }
 
@@ -57,12 +64,23 @@ public class TestScript : MonoBehaviour
             rb.freezeRotation = true;
             transform.Rotate(0, 0, RotationThrust*Time.deltaTime);
             rb.freezeRotation = false;
+            RightBooster.Play();
+        }
+        else
+        {
+            RightBooster.Stop();
         }
         if (Input.GetKey(KeyCode.D))
         {
             rb.freezeRotation = true;
             transform.Rotate(0, 0, -RotationThrust*Time.deltaTime);
             rb.freezeRotation = false;
+            LeftBooster.Play();
+
+        }
+        else
+        {
+            LeftBooster.Stop();
         }
     }
 
