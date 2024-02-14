@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 14085628320529392}
   - component: {fileID: 128666845068116719}
   - component: {fileID: 5383520547902099680}
+  - component: {fileID: 4196363819744156731}
   - component: {fileID: 7495361566098723237}
   - component: {fileID: 2663536908415300417}
   - component: {fileID: 8778339467336236509}
@@ -129,7 +130,7 @@ Transform:
   - {fileID: 272995855646706894}
   - {fileID: 6336156705411631699}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &14085628320529392
 MeshFilter:
@@ -175,6 +176,19 @@ MonoBehaviour:
   SuccessParticle: {fileID: 8766430139414664763}
   DeathParticle: {fileID: 3309584781751479454}
   isTransitioning: 0
+  collisionDisabled: 0
+--- !u!114 &4196363819744156731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188192157132480358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46641d6a2a7fa34daabf0cbb9e1b956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &7495361566098723237
 Rigidbody:
   m_ObjectHideFlags: 0
